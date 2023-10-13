@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           body: Center(
             child: Card(
               child: Center(
-                child: Container(
+                child: SizedBox(
                   height: 300,
                   width: 300,
                   child: Column(
