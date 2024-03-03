@@ -28,10 +28,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -50,19 +47,28 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyABm0fOJbtTP7r2BGHt_8ZyYj08xeg4nGw',
-    appId: '1:1012947092807:android:d31f74737b33deb6173862',
-    messagingSenderId: '1012947092807',
-    projectId: 'murtishala-ae0be',
-    storageBucket: 'murtishala-ae0be.appspot.com',
+    apiKey: 'AIzaSyDrNrCFfm0XoYysLln-oqDXBdCbPfc_9hw',
+    appId: '1:140062973464:android:9d1bad03ed6e584f8bed6d',
+    messagingSenderId: '140062973464',
+    projectId: 'murtishala-3d5c3',
+    storageBucket: 'murtishala-3d5c3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAWardZ8NbWNECFoFYX_ASeb68RWtIqLWg',
-    appId: '1:1012947092807:ios:1c1daafb7f445338173862',
-    messagingSenderId: '1012947092807',
-    projectId: 'murtishala-ae0be',
-    storageBucket: 'murtishala-ae0be.appspot.com',
+    apiKey: 'AIzaSyC2Ydf0wGK1GYkdeML9IiCCiUM5K-gnVgg',
+    appId: '1:140062973464:ios:06845aff91e3ba0a8bed6d',
+    messagingSenderId: '140062973464',
+    projectId: 'murtishala-3d5c3',
+    storageBucket: 'murtishala-3d5c3.appspot.com',
     iosBundleId: 'com.example.idolBooking',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyC2Ydf0wGK1GYkdeML9IiCCiUM5K-gnVgg',
+    appId: '1:140062973464:ios:b99e6d04e780fad68bed6d',
+    messagingSenderId: '140062973464',
+    projectId: 'murtishala-3d5c3',
+    storageBucket: 'murtishala-3d5c3.appspot.com',
+    iosBundleId: 'com.example.idolBooking.RunnerTests',
   );
 }

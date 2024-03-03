@@ -32,24 +32,9 @@ class Register extends StatelessWidget{
   }
 }
 
-/*void login() async{
-    String email=emailcontroller.text.trim();
-    String password = passcontroller.text.trim();
-    if(email==""||password==""){
-      log("please enter username or password");
-    }
-    else{
-      try{
-        UserCredential userCredential= await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-        if(userCredential.user !=null){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
-        }
-      }on FirebaseAuthException catch(ex){
-        log(ex.code.toString());
-      }
 
-    }
-  }*/
+
+
 
 
 

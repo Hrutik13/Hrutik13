@@ -1,23 +1,37 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
+import 'package:idol_booking/Homepage.dart';
 import 'package:idol_booking/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main()
-{
+/*void main()
+async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 runApp(Register());
+}*/
+
+class Register extends StatefulWidget{
+  const Register({super.key});
+  @override
+  State<Register> createState() =>_RegisterState();
 }
 
-class Register extends StatelessWidget{
 
-  TextEditingController nameController=TextEditingController();
-  TextEditingController passController=TextEditingController();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController addController=TextEditingController();
-  TextEditingController contController=TextEditingController();
+class _RegisterState extends State<Register>{
 
-  Register({super.key});
+  final nameController=TextEditingController();
+  final passController=TextEditingController();
+  final emailController=TextEditingController();
+  final addController=TextEditingController();
+  final contController=TextEditingController();
+
+
+  @override
+  Widget build(BuildContext context){
 
   void createAccount() async{
     String name = nameController.text.trim();
@@ -27,20 +41,25 @@ class Register extends StatelessWidget{
     String contact = contController.text.trim();
 
     if(name=="" ||password==""||email==""||address==""||contact==""){
-      log("Enter valid inputs");
+      Fluttertoast.showToast(msg: 'Enter valid inputs',gravity: ToastGravity.CENTER);
     }
+
     else{
+
       try{
         UserCredential userCredential = await FirebaseAuth.instance.
         createUserWithEmailAndPassword(email: email, password: password);
-        log('user created successfully');
+        Fluttertoast.showToast(msg: 'user created successfully',gravity: ToastGravity.CENTER);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage(),));
       } on FirebaseAuthException catch(ex){
-        log(ex.code.toString());
+        //log(ex.code.toString());
+        Fluttertoast.showToast(msg: ex.code.toString(),gravity: ToastGravity.CENTER);
       }
     }
   }
-  @override
-  Widget build(BuildContext context){
+
+  //@override
+  //Widget build(BuildContext context){
 
     return MaterialApp(
       home: Scaffold(
@@ -75,21 +94,7 @@ class Register extends StatelessWidget{
                                 ),
                               ),
                             ),
-                            /*Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'Last Name',
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.orange)
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                  ),
 
-                                ),
-                              ),
-                            ),*/
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextField(
@@ -147,6 +152,7 @@ class Register extends StatelessWidget{
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextField(
+                                keyboardType: TextInputType.phone,
                                 controller: contController,
                                 decoration: InputDecoration(
                                     hintText: 'Contact no.',
@@ -168,7 +174,17 @@ class Register extends StatelessWidget{
                                 width: 275,
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.amberAccent,),
                                 child: TextButton(
-                                  onPressed: (){createAccount();},
+                                  onPressed: (){
+                                    CollectionReference collRef = FirebaseFirestore.instance.collection('Users') ;
+                                    collRef.add({
+                                      'name':nameController.text,
+                                      'email':emailController.text,
+                                      'password':passController.text,
+                                      'address':addController.text,
+                                      'contact':contController.text,
+                                    });
+                                    createAccount();
+                                    },
                                   child: const Text('Submit',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black),),
                                 ),
                               ),
