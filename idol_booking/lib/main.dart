@@ -192,6 +192,7 @@ class LoginPage extends StatelessWidget {
                                            width: 275,
                                            child: TextButton(
                                             onPressed: () {
+                                              CircularProgressIndicator();
                                               login();
                                             },
                                             child:const Text('Sign in ',style: TextStyle(fontSize:18,),),

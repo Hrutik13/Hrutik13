@@ -2,58 +2,68 @@
 // import 'package:idol_booking/admin_profile.dart';
 // import 'package:idol_booking/admin_home.dart';
 // import 'package:idol_booking/admin_upload.dart';
+// import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 //
+// class Customers extends StatefulWidget {
+//   Customers({Key key}) : super(key: key);
 //
-//
-// class Customers extends StatefulWidget{
-//   Customers({super.key});
 //   @override
 //   _CustomerState createState() => _CustomerState();
 // }
-// class _CustomerState extends State<Customers>{
+//
+// class _CustomerState extends State<Customers> {
+//   int _currentIndex = 0;
+//
+//   final List<Widget> _children = [
+//     AdminHome(), // Assuming AdminHome is a StatefulWidget
+//     AdminUpload(), // Assuming AdminUpload is a StatefulWidget
+//     AdminProfile(), // Assuming AdminProfile is a StatefulWidget
+//   ];
+//
+//   void onTapped(int index) {
+//     setState(() {
+//       _currentIndex = index;
+//     });
+//   }
+//
 //   @override
-//   Widget build(BuildContext context){
+//   Widget build(BuildContext context) {
 //     return Scaffold(
 //       appBar: AppBar(
 //         title: Text('Customers'),
 //       ),
-//       body: Text('this are the your customers'),
-//       bottomNavigationBar: BottomAppBar(
-//         height: 80,
-//         color: Colors.white,
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//           children: [
-//             IconButton(onPressed: (){
-//               Navigator.push(context,MaterialPageRoute(builder: (context)=>Admin_Home()));
-//             },
+//       body: _children[_currentIndex],
+//       bottomNavigationBar: SalomonBottomBar(
+//         currentIndex: _currentIndex,
+//         onTap: onTapped,
+//         items: [
+//           SalomonBottomBarItem(
 //               icon: Icon(Icons.home),
-//             ),
-//
-//             IconButton(onPressed: (){},
-//               icon: Icon(Icons.people_alt),
-//             ),
-//             IconButton(onPressed: (){},
-//               icon: Icon(Icons.production_quantity_limits),
-//             ),
-//             IconButton(onPressed: (){
-//               Navigator.push(context, MaterialPageRoute(builder: (context)=>Admin_Product()));
-//             },
+//               title: Text('Home')
+//           ),
+//           SalomonBottomBarItem(
+//               icon: Icon(Icons.people),
+//               title: Text('Customer')
+//           ),
+//           SalomonBottomBarItem(
+//               icon: Icon(Icons.add_shopping_cart),
+//               title: Text('Orders')
+//           ),
+//           SalomonBottomBarItem(
 //               icon: Icon(Icons.add_a_photo),
-//             ),
-//             IconButton(onPressed: (){
-//               Navigator.push(context, MaterialPageRoute(builder: (context)=>Admin_Profile()));
-//             },
+//               title: Text('Upload')
+//           ),
+//           SalomonBottomBarItem(
 //               icon: Icon(Icons.account_circle),
-//             ),
-//           ],
-//         ),
+//               title: Text('Profile')
+//           )
+//         ],
 //       ),
 //     );
 //   }
-//}
+// }
 
-// import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import '';
 //
@@ -106,7 +116,7 @@
 // }
 
 
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:idol_booking/admin_profile.dart';
 import 'package:idol_booking/admin_home.dart';
